@@ -68,7 +68,8 @@ body {
 }
 
 /* Gallery Grid and Content */
-.gallery, .content {
+.gallery,
+.content {
   flex-grow: 1;
 }
 
@@ -121,4 +122,44 @@ body {
     position: static;
     margin-bottom: 2rem;
   }
+}
+
+/* 3D Ring Carousel */
+.scene {
+  width: 100%;
+  height: 100%;
+  min-height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+  overflow: hidden;
+}
+
+.ring {
+  position: relative;
+  width: 90px;
+  height: 120px;
+  transform-style: preserve-3d;
+  transform: rotateX(-15deg);
+  transition: transform 0.1s ease-out;
+}
+
+.ring-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Radius reduced by 40%: 550px * 0.6 = 330px. Adding rotateY(90deg) to make them face sideways like books */
+  transform: rotateY(calc(var(--i) * 15deg)) translateZ(330px) rotateY(90deg);
+  -webkit-box-reflect: below 15px linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.2));
+}
+
+.ring-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
